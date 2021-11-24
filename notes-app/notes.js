@@ -1,28 +1,32 @@
-const fs = require('fs)
+const fs = require('fs')
 
 const getNotes = function () {
-    return "Your notes..."
+    return 'Your notes...'
 }
 
-// add notes
 const addNote = function (title, body) {
     const notes = loadNotes()
-
-    notes.push({
-        title: title,
-        body: body
+    const duplicateNotes = notes.filter(function (note) {
+        return note.title === title
     })
 
-    console.log(notes)
+    if (duplicateNotes.length === 0) {
+        notes.push({
+            title: title,
+            body: body
+        })
+        saveNotes(notes)
+        console.log('New note added!')
+    } else {
+        console.log('Note title taken!')
+    }
 }
 
-// save notes
-const saveNotes = function () {
-    //continue here - section 4/video 19
+const saveNotes = function (notes) {
+    const dataJSON = JSON.stringify(notes)
+    fs.writeFileSync('notes.json', dataJSON)
 }
 
-
-// load notes
 const loadNotes = function () {
     try {
         const dataBuffer = fs.readFileSync('notes.json')
