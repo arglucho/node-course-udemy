@@ -40,7 +40,3 @@
 
 19. Many more tools
 
-## total number of pomodoro invested (1 pomodoro = 100 min focus and 20 min rest)
-
-4.2
-
